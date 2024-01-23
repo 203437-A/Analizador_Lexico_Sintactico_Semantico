@@ -97,7 +97,7 @@ def analisis(data):
 
 def t_error( t):
     global lexema
-    estado = "TOKEN_INVALIDO {:16} {:4}".format( str(t.value), str(t.lexpos))
+    estado = "TOKEN_INVALIDO {:16} {:4}".format(str(t.value[0]), str(t.lexpos))
     lexema.append(estado)
     t.lexer.skip(1)
 

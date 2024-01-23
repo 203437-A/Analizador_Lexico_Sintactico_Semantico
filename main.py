@@ -14,7 +14,7 @@ class MiVentana(QMainWindow):
         self.pushButton.clicked.connect(self.verificar)
 
         self.tableWidget.setColumnCount(3)
-        self.tableWidget.setHorizontalHeaderLabels(["Token", "Valor", "Posición"])
+        self.tableWidget.setHorizontalHeaderLabels(["Token", "Lexema", "Posición"])
 
         self.tableWidget.setColumnWidth(0, 200)  
         self.tableWidget.setColumnWidth(1, 200)  
@@ -28,14 +28,14 @@ class MiVentana(QMainWindow):
         self.tableWidget.setRowCount(0)
 
         for resultado in resultados:
-            tipo, valor, posicion = resultado.split(maxsplit=2)
+            token, lexema, posicion = resultado.split(maxsplit=2)
 
             rowPosition = self.tableWidget.rowCount()
 
             self.tableWidget.insertRow(rowPosition)
 
-            self.tableWidget.setItem(rowPosition, 0, QTableWidgetItem(tipo))
-            self.tableWidget.setItem(rowPosition, 1, QTableWidgetItem(valor))
+            self.tableWidget.setItem(rowPosition, 0, QTableWidgetItem(token))
+            self.tableWidget.setItem(rowPosition, 1, QTableWidgetItem(lexema))
             self.tableWidget.setItem(rowPosition, 2, QTableWidgetItem(posicion))
 
 if __name__ == '__main__':
