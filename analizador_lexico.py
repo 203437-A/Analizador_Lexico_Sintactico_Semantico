@@ -1,15 +1,7 @@
 import ply.lex as lex
 import re
 
-reservada = (
-    'INT',
-    'FLOAT',
-    'STRING',
-    'IF',
-    'FOR',
-    'DEF',
-)
-tokens = reservada + (
+tokens =  (
     'VARIABLE',
     'DECLARATIVO_INT',
     'DECLARATIVO_FLOAT',
@@ -31,13 +23,13 @@ tokens = reservada + (
     'PARENTESIS_FINAL',
 )
 
-t_PUNTO_Y_COMA = ';'
+t_PUNTO_Y_COMA = r';'
 t_DOS_PUNTOS = r':'
 t_MAYOR_QUE= r'>'
 t_MENOR_QUE= r'<'
 t_MAYOR_IGUAL= r'>='
 t_MENOR_IGUAL = r'<='
-t_DIGITO = r'[0-9]*[0-9]'
+t_DIGITO = r'\d+'
 t_CONTENIDO = r'C'
 t_PARENTESIS_INICIAL = r'\('
 t_PARENTESIS_FINAL = r'\)'
@@ -72,9 +64,11 @@ def t_IN(t):
     r'\bin\b'
     return t
 
-def t_espacios(t):
-    r'\s+'
-    pass
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+t_ignore = ' \t'
 
 def t_VARIABLE(t):
     r'[a-z]*[a-z]'
@@ -95,9 +89,8 @@ def analisis(data):
         lexema.append(estado)
     return lexema
 
-def t_error( t):
+def t_error(t):
     global lexema
     estado = "TOKEN_INVALIDO {:16} {:4}".format(str(t.value[0]), str(t.lexpos))
     lexema.append(estado)
     t.lexer.skip(1)
-
