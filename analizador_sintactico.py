@@ -46,15 +46,17 @@ def p_error(p):
         print(f"Error de sintaxis en la entrada. Token inesperado: {p.value} en la línea {str(p.lineno)} en la posición {str(p.lexpos)}")
     else:
         print("Error de sintaxis en la entrada. Final inesperado o token no reconocido.")
-        print(p)
-    # yacc.errok()    
+        print(p)   
 
 def prueba(data):
     parser = yacc.yacc(debug=True)
-    result = parser.parse(data)
-    if result:
-        print("Resultado" + result)
-        return result
-    else:
-        print("El análisis no tuvo éxito.")
-        print(result)
+    try:
+        result = parser.parse(data)
+        if result:
+            return result
+        else:
+            print("El análisis no tuvo éxito.")
+            return None
+    except Exception as e:
+        print(f"Error durante el análisis sintáctico: {str(e)}")
+        return None

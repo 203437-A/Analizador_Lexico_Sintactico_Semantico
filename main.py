@@ -4,8 +4,6 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 from analizador_lexico import analisis
-# from test import prueba_sintactica
-# from analizador_sintactico import prueba_sintactica
 from analizador_sintactico import prueba
 
 class MiVentana(QMainWindow):
@@ -26,7 +24,8 @@ class MiVentana(QMainWindow):
     def verificar(self):
         texto = self.textEdit.toPlainText()
         
-        resultados_lexico = analisis(texto)
+        success_lexical, resultados_lexico = analisis(texto)
+
         self.tableWidget.setRowCount(0)
 
         for resultado in resultados_lexico:
@@ -38,18 +37,20 @@ class MiVentana(QMainWindow):
             self.tableWidget.setItem(rowPosition, 1, QTableWidgetItem(lexema))
             self.tableWidget.setItem(rowPosition, 2, QTableWidgetItem(posicion))
 
-         # Análisis sintáctico
         resultado_sintactico = prueba(texto)
-         # Limpiar el textBrowser antes de mostrar nuevos resultados sintácticos
         self.textBrowser.clear()
-        # Mostrar resultados sintácticos en el textBrowser
-        if resultado_sintactico:
-            self.textBrowser.append(f"El análisis sintáctico tuvo exito y valido:\n{resultado_sintactico}")
+    
+        if success_lexical and 'TOKEN_INVALIDO' not in ''.join(resultados_lexico):
+            if resultado_sintactico is not None:
+                self.textBrowser.append(f"El análisis sintáctico tuvo éxito y válido:\n{resultado_sintactico}")
+            else:
+                self.textBrowser.append("El análisis sintáctico no tuvo éxito.")
         else:
-            self.textBrowser.append("El análisis sintáctico no tuvo éxito.")
+            self.textBrowser.append("El análisis léxico encontró TOKEN_INVALIDO.\nNo se mostrarán resultados sintácticos.")
 
 if __name__ == '__main__':
     app = QApplication([])
     ventana = MiVentana()
     ventana.show()
     app.exec_()
+

@@ -81,13 +81,18 @@ def analisis(data):
     analizador.input(data)
 
     lexema.clear()
+    has_invalid_token = False
+
     while True:
         token = analizador.token()
         if not token:
             break
+        if token.type == 'TOKEN_INVALIDO':
+            has_invalid_token = True
         estado = "{:16} {:16} {:4}".format(str(token.type), str(token.value), str(token.lexpos))
         lexema.append(estado)
-    return lexema
+
+    return not has_invalid_token, lexema
 
 def t_error(t):
     global lexema
