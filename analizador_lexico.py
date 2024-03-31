@@ -10,6 +10,7 @@ tokens =  (
     'CICLO_FOR',
     'IN',
     'FUNCION_DEF',
+    'PRINT',
 
     'PUNTO_Y_COMA',
     'MAYOR_QUE',
@@ -21,6 +22,8 @@ tokens =  (
     'CONTENIDO',
     'PARENTESIS_INICIAL',
     'PARENTESIS_FINAL',
+    'COMILLA',
+
 )
 
 t_PUNTO_Y_COMA = r';'
@@ -33,6 +36,8 @@ t_DIGITO = r'\d+'
 t_CONTENIDO = r'C'
 t_PARENTESIS_INICIAL = r'\('
 t_PARENTESIS_FINAL = r'\)'
+t_COMILLA = r'\"'
+
 
 lexema = []
 
@@ -46,6 +51,10 @@ def t_DECLARATIVO_FLOAT(t):
 
 def t_DECLARATIVO_STRING(t):
     r'\bstring\b'
+    return t
+
+def t_PRINT(t):
+    r'\bprint\b'
     return t
 
 def t_CONDICIONAL_IF(t):

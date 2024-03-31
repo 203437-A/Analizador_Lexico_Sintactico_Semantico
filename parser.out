@@ -1,0 +1,560 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> declaraciones
+Rule 1     declaraciones -> declaracion declaraciones
+Rule 2     declaraciones -> declaracion
+Rule 3     declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA
+Rule 4     declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA
+Rule 5     declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA
+Rule 6     declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+Rule 7     declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+Rule 8     declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+Rule 9     declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+Rule 10    declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+Rule 11    declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+Rule 12    declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+Terminals, with rules where they appear
+
+CICLO_FOR            : 11
+COMILLA              : 11 11 12 12
+CONDICIONAL_IF       : 6 7 8 9
+CONTENIDO            : 6 7 8 9 10
+DECLARATIVO_FLOAT    : 5
+DECLARATIVO_INT      : 3
+DECLARATIVO_STRING   : 4
+DIGITO               : 6 7 8 9
+DOS_PUNTOS           : 6 7 8 9 10 11
+FUNCION_DEF          : 10
+IN                   : 11
+MAYOR_IGUAL          : 9
+MAYOR_QUE            : 6
+MENOR_IGUAL          : 8
+MENOR_QUE            : 7
+PARENTESIS_FINAL     : 10 11 12
+PARENTESIS_INICIAL   : 10 11 12
+PRINT                : 11 12
+PUNTO_Y_COMA         : 3 4 5 11 12
+VARIABLE             : 3 4 5 6 7 8 9 10 11 11 11 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+declaracion          : 1 2
+declaraciones        : 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . declaraciones
+    (1) declaraciones -> . declaracion declaraciones
+    (2) declaraciones -> . declaracion
+    (3) declaracion -> . DECLARATIVO_INT VARIABLE PUNTO_Y_COMA
+    (4) declaracion -> . DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA
+    (5) declaracion -> . DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA
+    (6) declaracion -> . CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (7) declaracion -> . CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (8) declaracion -> . CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (9) declaracion -> . CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (10) declaracion -> . FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+    (11) declaracion -> . CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+    (12) declaracion -> . PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    DECLARATIVO_INT shift and go to state 3
+    DECLARATIVO_STRING shift and go to state 4
+    DECLARATIVO_FLOAT shift and go to state 5
+    CONDICIONAL_IF  shift and go to state 6
+    FUNCION_DEF     shift and go to state 7
+    CICLO_FOR       shift and go to state 8
+    PRINT           shift and go to state 9
+
+    declaraciones                  shift and go to state 1
+    declaracion                    shift and go to state 2
+
+state 1
+
+    (0) S' -> declaraciones .
+
+
+
+state 2
+
+    (1) declaraciones -> declaracion . declaraciones
+    (2) declaraciones -> declaracion .
+    (1) declaraciones -> . declaracion declaraciones
+    (2) declaraciones -> . declaracion
+    (3) declaracion -> . DECLARATIVO_INT VARIABLE PUNTO_Y_COMA
+    (4) declaracion -> . DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA
+    (5) declaracion -> . DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA
+    (6) declaracion -> . CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (7) declaracion -> . CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (8) declaracion -> . CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (9) declaracion -> . CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (10) declaracion -> . FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+    (11) declaracion -> . CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+    (12) declaracion -> . PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    $end            reduce using rule 2 (declaraciones -> declaracion .)
+    DECLARATIVO_INT shift and go to state 3
+    DECLARATIVO_STRING shift and go to state 4
+    DECLARATIVO_FLOAT shift and go to state 5
+    CONDICIONAL_IF  shift and go to state 6
+    FUNCION_DEF     shift and go to state 7
+    CICLO_FOR       shift and go to state 8
+    PRINT           shift and go to state 9
+
+    declaracion                    shift and go to state 2
+    declaraciones                  shift and go to state 10
+
+state 3
+
+    (3) declaracion -> DECLARATIVO_INT . VARIABLE PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 11
+
+
+state 4
+
+    (4) declaracion -> DECLARATIVO_STRING . VARIABLE PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 12
+
+
+state 5
+
+    (5) declaracion -> DECLARATIVO_FLOAT . VARIABLE PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 13
+
+
+state 6
+
+    (6) declaracion -> CONDICIONAL_IF . VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (7) declaracion -> CONDICIONAL_IF . VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (8) declaracion -> CONDICIONAL_IF . VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (9) declaracion -> CONDICIONAL_IF . VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+
+    VARIABLE        shift and go to state 14
+
+
+state 7
+
+    (10) declaracion -> FUNCION_DEF . VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+
+    VARIABLE        shift and go to state 15
+
+
+state 8
+
+    (11) declaracion -> CICLO_FOR . VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 16
+
+
+state 9
+
+    (12) declaracion -> PRINT . PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    PARENTESIS_INICIAL shift and go to state 17
+
+
+state 10
+
+    (1) declaraciones -> declaracion declaraciones .
+
+    $end            reduce using rule 1 (declaraciones -> declaracion declaraciones .)
+
+
+state 11
+
+    (3) declaracion -> DECLARATIVO_INT VARIABLE . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 18
+
+
+state 12
+
+    (4) declaracion -> DECLARATIVO_STRING VARIABLE . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 19
+
+
+state 13
+
+    (5) declaracion -> DECLARATIVO_FLOAT VARIABLE . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 20
+
+
+state 14
+
+    (6) declaracion -> CONDICIONAL_IF VARIABLE . MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (7) declaracion -> CONDICIONAL_IF VARIABLE . MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO
+    (8) declaracion -> CONDICIONAL_IF VARIABLE . MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+    (9) declaracion -> CONDICIONAL_IF VARIABLE . MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO
+
+    MAYOR_QUE       shift and go to state 21
+    MENOR_QUE       shift and go to state 22
+    MENOR_IGUAL     shift and go to state 23
+    MAYOR_IGUAL     shift and go to state 24
+
+
+state 15
+
+    (10) declaracion -> FUNCION_DEF VARIABLE . PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+
+    PARENTESIS_INICIAL shift and go to state 25
+
+
+state 16
+
+    (11) declaracion -> CICLO_FOR VARIABLE . IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    IN              shift and go to state 26
+
+
+state 17
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL . COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    COMILLA         shift and go to state 27
+
+
+state 18
+
+    (3) declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .
+
+    DECLARATIVO_INT reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_STRING reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_FLOAT reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    CONDICIONAL_IF  reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    FUNCION_DEF     reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    CICLO_FOR       reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    PRINT           reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+    $end            reduce using rule 3 (declaracion -> DECLARATIVO_INT VARIABLE PUNTO_Y_COMA .)
+
+
+state 19
+
+    (4) declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .
+
+    DECLARATIVO_INT reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_STRING reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_FLOAT reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    CONDICIONAL_IF  reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    FUNCION_DEF     reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    CICLO_FOR       reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    PRINT           reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+    $end            reduce using rule 4 (declaracion -> DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA .)
+
+
+state 20
+
+    (5) declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .
+
+    DECLARATIVO_INT reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_STRING reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    DECLARATIVO_FLOAT reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    CONDICIONAL_IF  reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    FUNCION_DEF     reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    CICLO_FOR       reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    PRINT           reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+    $end            reduce using rule 5 (declaracion -> DECLARATIVO_FLOAT VARIABLE PUNTO_Y_COMA .)
+
+
+state 21
+
+    (6) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE . DIGITO DOS_PUNTOS CONTENIDO
+
+    DIGITO          shift and go to state 28
+
+
+state 22
+
+    (7) declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE . DIGITO DOS_PUNTOS CONTENIDO
+
+    DIGITO          shift and go to state 29
+
+
+state 23
+
+    (8) declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL . DIGITO DOS_PUNTOS CONTENIDO
+
+    DIGITO          shift and go to state 30
+
+
+state 24
+
+    (9) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL . DIGITO DOS_PUNTOS CONTENIDO
+
+    DIGITO          shift and go to state 31
+
+
+state 25
+
+    (10) declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL . PARENTESIS_FINAL DOS_PUNTOS CONTENIDO
+
+    PARENTESIS_FINAL shift and go to state 32
+
+
+state 26
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN . VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 33
+
+
+state 27
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL COMILLA . VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 34
+
+
+state 28
+
+    (6) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO . DOS_PUNTOS CONTENIDO
+
+    DOS_PUNTOS      shift and go to state 35
+
+
+state 29
+
+    (7) declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO . DOS_PUNTOS CONTENIDO
+
+    DOS_PUNTOS      shift and go to state 36
+
+
+state 30
+
+    (8) declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO . DOS_PUNTOS CONTENIDO
+
+    DOS_PUNTOS      shift and go to state 37
+
+
+state 31
+
+    (9) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO . DOS_PUNTOS CONTENIDO
+
+    DOS_PUNTOS      shift and go to state 38
+
+
+state 32
+
+    (10) declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL . DOS_PUNTOS CONTENIDO
+
+    DOS_PUNTOS      shift and go to state 39
+
+
+state 33
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE . DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    DOS_PUNTOS      shift and go to state 40
+
+
+state 34
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE . COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    COMILLA         shift and go to state 41
+
+
+state 35
+
+    (6) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS . CONTENIDO
+
+    CONTENIDO       shift and go to state 42
+
+
+state 36
+
+    (7) declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS . CONTENIDO
+
+    CONTENIDO       shift and go to state 43
+
+
+state 37
+
+    (8) declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS . CONTENIDO
+
+    CONTENIDO       shift and go to state 44
+
+
+state 38
+
+    (9) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS . CONTENIDO
+
+    CONTENIDO       shift and go to state 45
+
+
+state 39
+
+    (10) declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS . CONTENIDO
+
+    CONTENIDO       shift and go to state 46
+
+
+state 40
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS . PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    PRINT           shift and go to state 47
+
+
+state 41
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA . PARENTESIS_FINAL PUNTO_Y_COMA
+
+    PARENTESIS_FINAL shift and go to state 48
+
+
+state 42
+
+    (6) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .
+
+    DECLARATIVO_INT reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_STRING reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_FLOAT reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    CONDICIONAL_IF  reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    FUNCION_DEF     reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    CICLO_FOR       reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    PRINT           reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    $end            reduce using rule 6 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+
+
+state 43
+
+    (7) declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .
+
+    DECLARATIVO_INT reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_STRING reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_FLOAT reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    CONDICIONAL_IF  reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    FUNCION_DEF     reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    CICLO_FOR       reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    PRINT           reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+    $end            reduce using rule 7 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_QUE DIGITO DOS_PUNTOS CONTENIDO .)
+
+
+state 44
+
+    (8) declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .
+
+    DECLARATIVO_INT reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_STRING reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_FLOAT reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    CONDICIONAL_IF  reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    FUNCION_DEF     reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    CICLO_FOR       reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    PRINT           reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    $end            reduce using rule 8 (declaracion -> CONDICIONAL_IF VARIABLE MENOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+
+
+state 45
+
+    (9) declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .
+
+    DECLARATIVO_INT reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_STRING reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_FLOAT reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    CONDICIONAL_IF  reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    FUNCION_DEF     reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    CICLO_FOR       reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    PRINT           reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+    $end            reduce using rule 9 (declaracion -> CONDICIONAL_IF VARIABLE MAYOR_IGUAL DIGITO DOS_PUNTOS CONTENIDO .)
+
+
+state 46
+
+    (10) declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .
+
+    DECLARATIVO_INT reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_STRING reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    DECLARATIVO_FLOAT reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    CONDICIONAL_IF  reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    FUNCION_DEF     reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    CICLO_FOR       reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    PRINT           reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+    $end            reduce using rule 10 (declaracion -> FUNCION_DEF VARIABLE PARENTESIS_INICIAL PARENTESIS_FINAL DOS_PUNTOS CONTENIDO .)
+
+
+state 47
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT . PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    PARENTESIS_INICIAL shift and go to state 49
+
+
+state 48
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 50
+
+
+state 49
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL . COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    COMILLA         shift and go to state 51
+
+
+state 50
+
+    (12) declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .
+
+    DECLARATIVO_INT reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    DECLARATIVO_STRING reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    DECLARATIVO_FLOAT reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    CONDICIONAL_IF  reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    FUNCION_DEF     reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    CICLO_FOR       reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    PRINT           reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    $end            reduce using rule 12 (declaracion -> PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+
+
+state 51
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA . VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    VARIABLE        shift and go to state 52
+
+
+state 52
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE . COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+
+    COMILLA         shift and go to state 53
+
+
+state 53
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA . PARENTESIS_FINAL PUNTO_Y_COMA
+
+    PARENTESIS_FINAL shift and go to state 54
+
+
+state 54
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 55
+
+
+state 55
+
+    (11) declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .
+
+    DECLARATIVO_INT reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    DECLARATIVO_STRING reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    DECLARATIVO_FLOAT reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    CONDICIONAL_IF  reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    FUNCION_DEF     reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    CICLO_FOR       reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    PRINT           reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+    $end            reduce using rule 11 (declaracion -> CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA .)
+

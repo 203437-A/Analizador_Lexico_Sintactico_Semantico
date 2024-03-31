@@ -23,9 +23,7 @@ class MiVentana(QMainWindow):
 
     def verificar(self):
         texto = self.textEdit.toPlainText()
-        
         success_lexical, resultados_lexico = analisis(texto)
-
         self.tableWidget.setRowCount(0)
 
         for resultado in resultados_lexico:
@@ -38,8 +36,8 @@ class MiVentana(QMainWindow):
             self.tableWidget.setItem(rowPosition, 2, QTableWidgetItem(posicion))
 
         resultado_sintactico = prueba(texto)
+
         self.textBrowser.clear()
-    
         if success_lexical and 'TOKEN_INVALIDO' not in ''.join(resultados_lexico):
             if resultado_sintactico is not None:
                 self.textBrowser.append(f"El análisis sintáctico tuvo éxito y válido:\n{resultado_sintactico}")

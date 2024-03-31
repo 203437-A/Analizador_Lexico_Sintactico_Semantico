@@ -1,6 +1,6 @@
 from ply import  yacc
 from analizador_lexico import tokens
-# from analizador_lexico import analizador
+
 
 def p_declaraciones(p):
     '''
@@ -37,9 +37,15 @@ def p_definicion_funcion(p):
 
 def p_bucle(p):
     '''
-    declaracion : CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS CONTENIDO
+    declaracion : CICLO_FOR VARIABLE IN VARIABLE DOS_PUNTOS PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
     '''
-    p[0] = f'Bucle For: {p[1]} {p[2]} {p[3]} {p[4]} {p[5]} {p[6]}'
+    p[0] = f'Bucle For: {p[1]} {p[2]} {p[3]} {p[4]} {p[5]} {p[6]} {p[7]} {p[8]} {p[9]} {p[10]} {p[11]} {p[12]}'
+
+def p_print(p):
+    '''
+    declaracion : PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
+    '''
+    p[0] = f'Print: {p[1]} {p[2]} {p[3]} {p[4]} {p[5]} {p[6]} {p[7]}'
 
 def p_error(p):
     if p:
