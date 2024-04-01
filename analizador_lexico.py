@@ -4,13 +4,14 @@ import re
 tokens =  (
     'VARIABLE',
     'DECLARATIVO_INT',
-    'DECLARATIVO_FLOAT',
+    'DECLARATIVO_BOOLEAN',
     'DECLARATIVO_STRING',
     'CONDICIONAL_IF',
     'CICLO_FOR',
     'IN',
     'FUNCION_DEF',
     'PRINT',
+    'RANGE',
 
     'PUNTO_Y_COMA',
     'MAYOR_QUE',
@@ -19,7 +20,6 @@ tokens =  (
     'MAYOR_IGUAL',
     'DOS_PUNTOS',
     'DIGITO',
-    'CONTENIDO',
     'PARENTESIS_INICIAL',
     'PARENTESIS_FINAL',
     'COMILLA',
@@ -33,10 +33,9 @@ t_MENOR_QUE= r'<'
 t_MAYOR_IGUAL= r'>='
 t_MENOR_IGUAL = r'<='
 t_DIGITO = r'\d+'
-t_CONTENIDO = r'C'
 t_PARENTESIS_INICIAL = r'\('
 t_PARENTESIS_FINAL = r'\)'
-t_COMILLA = r'\"'
+t_COMILLA = r'\''
 
 
 lexema = []
@@ -45,8 +44,8 @@ def t_DECLARATIVO_INT(t):
     r'\bint\b'
     return t
 
-def t_DECLARATIVO_FLOAT(t):
-    r'\bfloat\b'
+def t_DECLARATIVO_BOOLEAN(t):
+    r'\bboolean\b'
     return t
 
 def t_DECLARATIVO_STRING(t):
@@ -55,6 +54,10 @@ def t_DECLARATIVO_STRING(t):
 
 def t_PRINT(t):
     r'\bprint\b'
+    return t
+
+def t_RANGE(t):
+    r'\brange\b'
     return t
 
 def t_CONDICIONAL_IF(t):
@@ -108,3 +111,5 @@ def t_error(t):
     estado = "TOKEN_INVALIDO {:16} {:4}".format(str(t.value[0]), str(t.lexpos))
     lexema.append(estado)
     t.lexer.skip(1)
+
+analizador = lex.lex()
