@@ -58,17 +58,13 @@ def analisis_semantico(arbol_sintactico, tabla_simbolos=None):
         if arbol_sintactico[0] == 'declaracion':
             _, tipo, nombre = arbol_sintactico
             tabla_simbolos.agregar(nombre, tipo)
-        # Procesar otros tipos de nodos aquí
-        elif arbol_sintactico[0] == 'definicion_funcion':
-            _, nombre_funcion, _ = arbol_sintactico
-            tabla_simbolos.agregar_funcion(nombre_funcion, None)  # Añadir la función a la tabla de símbolos
-        # Procesar otros tipos de nodos aquí
-        elif arbol_sintactico[0] == 'definicion_funcion_for':
-            _, nombre_funcion, _ = arbol_sintactico
-            tabla_simbolos.agregar_funcion(nombre_funcion, None)  # Añadir la función a la tabla de símbolos
-            # tabla_simbolos.push_scope()
-        # Procesar otros tipos de nodos aquí
-            # tabla_simbolos.pop_scope()
+    if isinstance(arbol_sintactico, tuple):
+        if arbol_sintactico[0] == 'Funcion':
+                _, nombre_funcion, contenido = arbol_sintactico
+                tabla_simbolos.agregar_funcion(nombre_funcion, [])    
+        elif arbol_sintactico[0] == 'Funcion con FOR':
+            _, nombre_funcion, contenido = arbol_sintactico
+            tabla_simbolos.agregar_funcion(nombre_funcion, [])  
 
 
     elif isinstance(arbol_sintactico, list):
@@ -116,8 +112,6 @@ def prueba_semantica(texto):
         return f"{e}"
     finally:
         sys.stdout = old_stdout 
-
-
 
 if __name__ == "__main__":
     codigo_prueba = "h();  def h(): print('a');print('ave');"
