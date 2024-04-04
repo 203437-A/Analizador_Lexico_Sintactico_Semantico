@@ -195,7 +195,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
-     <string>Resultados de ejecución</string>
+     <string>Resultados del analizador semántico</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

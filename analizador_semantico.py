@@ -6,12 +6,32 @@ import sys
 class TablaDeSimbolos:
     def __init__(self):
         self.simbolos = {}
+        self.funciones = {}
 
     def agregar(self, nombre, tipo):
+        if nombre in self.simbolos:
+            raise Exception(f"Error semántico: La variable '{nombre}' ya está declarada.")
         self.simbolos[nombre] = tipo
 
     def obtener(self, nombre):
-        return self.simbolos.get(nombre)
+        if nombre not in self.simbolos:
+            raise Exception(f"Error semántico: La variable '{nombre}' no está declarada.")
+        return self.simbolos[nombre]
+
+    def verificar_tipo(self, nombre, tipo_esperado):
+        tipo = self.obtener(nombre)
+        if tipo != tipo_esperado:
+            raise Exception(f"Error semántico: Tipo incorrecto para la variable '{nombre}'. Se esperaba {tipo_esperado}.")
+
+    def agregar_funcion(self, nombre, parametros):
+        if nombre in self.funciones:
+            raise Exception(f"Error semántico: La función '{nombre}' ya está definida.")
+        self.funciones[nombre] = parametros
+
+    def obtener_funcion(self, nombre):
+        if nombre not in self.funciones:
+            raise Exception(f"Error semántico: La función '{nombre}' no está definida.")
+        return self.funciones[nombre]
 
 class IfStatement:
     def __init__(self, condicion, contenido):
@@ -34,18 +54,30 @@ def analisis_semantico(arbol_sintactico, tabla_simbolos=None):
     if tabla_simbolos is None:
         tabla_simbolos = TablaDeSimbolos()
 
-    if isinstance(arbol_sintactico, IfStatement):
+    if isinstance(arbol_sintactico, tuple):
+        if arbol_sintactico[0] == 'declaracion':
+            _, tipo, nombre = arbol_sintactico
+            tabla_simbolos.agregar(nombre, tipo)
+        # Procesar otros tipos de nodos aquí
+        elif arbol_sintactico[0] == 'definicion_funcion':
+            _, nombre_funcion, _ = arbol_sintactico
+            tabla_simbolos.agregar_funcion(nombre_funcion, None)  # Añadir la función a la tabla de símbolos
+        # Procesar otros tipos de nodos aquí
+        elif arbol_sintactico[0] == 'definicion_funcion_for':
+            _, nombre_funcion, _ = arbol_sintactico
+            tabla_simbolos.agregar_funcion(nombre_funcion, None)  # Añadir la función a la tabla de símbolos
+            # tabla_simbolos.push_scope()
+        # Procesar otros tipos de nodos aquí
+            # tabla_simbolos.pop_scope()
+
+
+    elif isinstance(arbol_sintactico, list):
+        for nodo in arbol_sintactico:
+            analisis_semantico(nodo, tabla_simbolos)
+
+
+    elif isinstance(arbol_sintactico, IfStatement):
         condicion = arbol_sintactico.condicion
-        contenido = arbol_sintactico.contenido
-
-    elif isinstance(arbol_sintactico, ForLoop):
-        variable = arbol_sintactico.variable
-        rango = arbol_sintactico.rango
-        contenido = arbol_sintactico.contenido
-
-    elif isinstance(arbol_sintactico, FunctionDefinition):
-        nombre = arbol_sintactico.nombre
-        parametros = arbol_sintactico.parametros
         contenido = arbol_sintactico.contenido
 
     return "Análisis semántico completado con éxito y el resultado es:\n"
@@ -62,28 +94,28 @@ def transformar_a_python(codigo):
     codigo_transformado = '\n'.join(lineas_transformadas)
     return codigo_transformado
 
+
 def prueba_semantica(texto):
+    old_stdout = sys.stdout  
     try:
         arbol_sintactico = parser.parse(texto)
         resultado = analisis_semantico(arbol_sintactico)
         
-        old_stdout = sys.stdout
         new_stdout = io.StringIO()
         sys.stdout = new_stdout
 
         codigo_python = transformar_a_python(texto)
         exec(codigo_python)
 
-        sys.stdout = old_stdout
         output = new_stdout.getvalue()
 
         return resultado + '\n' + output
     except SyntaxError as e:
-        sys.stdout = old_stdout
-        return f"Error semántico: {e}"
+        return f"Hubo un error semántico"
     except Exception as e:
-        sys.stdout = old_stdout
-        return f"Error: {e}"
+        return f"{e}"
+    finally:
+        sys.stdout = old_stdout 
 
 
 
