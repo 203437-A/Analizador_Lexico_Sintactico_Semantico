@@ -13,16 +13,6 @@ class TablaDeSimbolos:
             raise Exception(f"Error semántico: La variable '{nombre}' ya está declarada.")
         self.simbolos[nombre] = tipo
 
-    def obtener(self, nombre):
-        if nombre not in self.simbolos:
-            raise Exception(f"Error semántico: La variable '{nombre}' no está declarada.")
-        return self.simbolos[nombre]
-
-    def verificar_tipo(self, nombre, tipo_esperado):
-        tipo = self.obtener(nombre)
-        if tipo != tipo_esperado:
-            raise Exception(f"Error semántico: Tipo incorrecto para la variable '{nombre}'. Se esperaba {tipo_esperado}.")
-
     def agregar_funcion(self, nombre, parametros):
         if nombre in self.funciones:
             raise Exception(f"Error semántico: La función '{nombre}' ya está definida.")
@@ -66,11 +56,9 @@ def analisis_semantico(arbol_sintactico, tabla_simbolos=None):
             _, nombre_funcion, contenido = arbol_sintactico
             tabla_simbolos.agregar_funcion(nombre_funcion, [])  
 
-
     elif isinstance(arbol_sintactico, list):
         for nodo in arbol_sintactico:
             analisis_semantico(nodo, tabla_simbolos)
-
 
     elif isinstance(arbol_sintactico, IfStatement):
         condicion = arbol_sintactico.condicion
@@ -107,7 +95,7 @@ def prueba_semantica(texto):
 
         return resultado + '\n' + output
     except SyntaxError as e:
-        return f"Hubo un error semántico"
+        return f"Hubo un error en el analizador"
     except Exception as e:
         return f"{e}"
     finally:

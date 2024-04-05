@@ -8,9 +8,9 @@ def p_declaraciones(p):
                   | declaracion
     '''
     if len(p) == 3:
-        p[0] = [p[1]] + p[2]  # Asegúrate de que p[2] sea una lista
+        p[0] = [p[1]] + p[2]  
     else:
-        p[0] = [p[1]]  # Envuelve la declaración individual en una lista
+        p[0] = [p[1]]  
 
 def p_declaracion(p):
     '''
