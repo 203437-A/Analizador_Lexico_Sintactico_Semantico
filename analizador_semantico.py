@@ -1,4 +1,3 @@
-from analizador_lexico import tokens
 from analizador_sintactico import parser
 import io
 import sys
@@ -59,10 +58,6 @@ def analisis_semantico(arbol_sintactico, tabla_simbolos=None):
     elif isinstance(arbol_sintactico, list):
         for nodo in arbol_sintactico:
             analisis_semantico(nodo, tabla_simbolos)
-
-    elif isinstance(arbol_sintactico, IfStatement):
-        condicion = arbol_sintactico.condicion
-        contenido = arbol_sintactico.contenido
 
     return "Análisis semántico completado con éxito y el resultado es:\n"
 
