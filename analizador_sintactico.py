@@ -19,7 +19,7 @@ def p_declaracion(p):
                 | VARIABLE IGUAL BOOLEAN_TRUE PUNTO_Y_COMA
                 | VARIABLE IGUAL BOOLEAN_FALSE PUNTO_Y_COMA
     '''
-    p[0] = ('declaracion', p[1], p[2])
+    p[0] = ('declaracion', p[1], p[3])
 
 def p_expresion_condicional(p):
     '''
