@@ -14,9 +14,10 @@ def p_declaraciones(p):
 
 def p_declaracion(p):
     '''
-    declaracion : DECLARATIVO_INT VARIABLE PUNTO_Y_COMA
-                | DECLARATIVO_STRING VARIABLE PUNTO_Y_COMA
-                | DECLARATIVO_BOOLEAN VARIABLE PUNTO_Y_COMA
+    declaracion : VARIABLE IGUAL DIGITO PUNTO_Y_COMA
+                | VARIABLE IGUAL COMILLA VARIABLE COMILLA PUNTO_Y_COMA
+                | VARIABLE IGUAL BOOLEAN_TRUE PUNTO_Y_COMA
+                | VARIABLE IGUAL BOOLEAN_FALSE PUNTO_Y_COMA
     '''
     p[0] = ('declaracion', p[1], p[2])
 
@@ -68,6 +69,12 @@ def p_print(p):
     declaracion : PRINT PARENTESIS_INICIAL COMILLA VARIABLE COMILLA PARENTESIS_FINAL PUNTO_Y_COMA
     '''
     p[0] = f'\nPrint:\n {p[1]} {p[2]} {p[3]} {p[4]} {p[5]} {p[6]} {p[7]}'
+
+def p_print_variable(p):
+    '''
+    declaracion : PRINT PARENTESIS_INICIAL  VARIABLE  PARENTESIS_FINAL PUNTO_Y_COMA
+    '''
+    p[0] = f'\nPrint:\n {p[1]} {p[2]} {p[3]} {p[4]} {p[5]}'
 
 def p_error(p):
     if p:

@@ -3,15 +3,14 @@ import re
 
 tokens =  (
     'VARIABLE',
-    'DECLARATIVO_INT',
-    'DECLARATIVO_BOOLEAN',
-    'DECLARATIVO_STRING',
     'CONDICIONAL_IF',
     'CICLO_FOR',
     'IN',
     'FUNCION_DEF',
     'PRINT',
     'RANGE',
+    'BOOLEAN_TRUE',
+    'BOOLEAN_FALSE',
 
     'PUNTO_Y_COMA',
     'MAYOR_QUE',
@@ -23,6 +22,7 @@ tokens =  (
     'PARENTESIS_INICIAL',
     'PARENTESIS_FINAL',
     'COMILLA',
+    'IGUAL',
 
 )
 
@@ -36,20 +36,17 @@ t_DIGITO = r'\d+'
 t_PARENTESIS_INICIAL = r'\('
 t_PARENTESIS_FINAL = r'\)'
 t_COMILLA = r'\''
+t_IGUAL = r'='
 
 
 lexema = []
 
-def t_DECLARATIVO_INT(t):
-    r'\bint\b'
+def t_BOOLEAN_TRUE(t):
+    r'\bTrue\b'
     return t
 
-def t_DECLARATIVO_BOOLEAN(t):
-    r'\bboolean\b'
-    return t
-
-def t_DECLARATIVO_STRING(t):
-    r'\bstring\b'
+def t_BOOLEAN_FALSE(t):
+    r'\bFalse\b'
     return t
 
 def t_PRINT(t):

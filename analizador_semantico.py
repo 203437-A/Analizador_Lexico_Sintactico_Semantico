@@ -9,7 +9,7 @@ class TablaDeSimbolos:
 
     def agregar(self, nombre, tipo):
         if nombre in self.simbolos:
-            raise Exception(f"Error semántico: La variable '{nombre}' ya está declarada.")
+            raise Exception(f"Error semántico: La variable '{tipo}' ya está declarada.")
         self.simbolos[nombre] = tipo
 
     def agregar_funcion(self, nombre, parametros):
@@ -61,19 +61,6 @@ def analisis_semantico(arbol_sintactico, tabla_simbolos=None):
 
     return "Análisis semántico completado con éxito y el resultado es:\n"
 
-def transformar_a_python(codigo):
-    lineas = codigo.split(';') 
-    lineas_transformadas = []
-
-    for linea in lineas:
-        linea = linea.strip()
-        if not (linea.startswith("int ") or linea.startswith("string ") or linea.startswith("boolean ")):
-            lineas_transformadas.append(linea)
-
-    codigo_transformado = '\n'.join(lineas_transformadas)
-    return codigo_transformado
-
-
 def prueba_semantica(texto):
     old_stdout = sys.stdout  
     try:
@@ -82,9 +69,7 @@ def prueba_semantica(texto):
         
         new_stdout = io.StringIO()
         sys.stdout = new_stdout
-
-        codigo_python = transformar_a_python(texto)
-        exec(codigo_python)
+        exec(texto)
 
         output = new_stdout.getvalue()
 
@@ -95,7 +80,3 @@ def prueba_semantica(texto):
         return f"{e}"
     finally:
         sys.stdout = old_stdout 
-
-if __name__ == "__main__":
-    codigo_prueba = "h();  def h(): print('a');print('ave');"
-    prueba_semantica(codigo_prueba)
